@@ -5,76 +5,79 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
-using ProyectoFinalMattolini.ADO.NET;
-
-namespace ProyectoFinalMattolini.ADO.NET
-
-{
-    public static Usuario IniciarSesion(string nombreUsuario, string contrasena)
-
-    {
-        string connectionString = @"Server=swdmdzbaspi02;Database=SistemaGestion;Trusted_Connection=True;";
-        using (var connection = new SqlConnection(connectionString))
-
-        {
-
-            connection.Open();
-
-            const string query = @"SELECT Id, Nombre, Apellido, NombreUsuario, Contraseña, Mail FROM Usuario WHERE NombreUsuario = @nombreUsuario AND Contraseña = @contrasena";
-            //escribimos la query que queremos ejecutar
-            using (var command = new SqlCommand(query, connection))
-
-            {
-
-                command.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
-
-                command.Parameters.AddWithValue("@contrasena", contrasena);
+using ProyectoFinalMattolini.Modelos;
 
 
 
-                //iteramos cada fila que nos devuelve el select
-                using (var reader = command.ExecuteReader())
 
-                {
 
-                    if (reader.Read())
+//namespace ProyectoFinalMattolini.ADO.NET
+//{
+//    public static Usuario IniciarSesion(string nombreUsuario, string contrasena)
 
-                    {
+//    {
+//        string connectionString = @"Server=swdmdzbaspi02;Database=SistemaGestion;Trusted_Connection=True;";
+//        using (var connection = new SqlConnection(connectionString))
 
-                        return new Usuario
+//        {
 
-                        {
+//            connection.Open();
 
-                            Id = reader.GetInt64(0),
+//            const string query = @"SELECT Id, Nombre, Apellido, NombreUsuario, Contraseña, Mail FROM Usuario WHERE NombreUsuario = @nombreUsuario AND Contraseña = @contrasena";
+//            //escribimos la query que queremos ejecutar
+//            using (var command = new SqlCommand(query, connection))
 
-                            Nombre = reader.GetString(1),
+//            {
 
-                            Apellido = reader.GetString(2),
+//                command.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
 
-                            NombreUsuario = reader.GetString(3),
+//                command.Parameters.AddWithValue("@contrasena", contrasena);
 
-                            Contraseña = reader.GetString(4),
 
-                            Mail = reader.GetString(5)
 
-                        };
+//                //iteramos cada fila que nos devuelve el select
+//                using (var reader = command.ExecuteReader())
 
-                    }
+//                {
 
-                    else
+//                    if (reader.Read())
 
-                    {
+//                    {
 
-                        return null;
+//                        return new Usuario
 
-                    }
+//                        {
 
-                }
+//                            Id = reader.GetInt64(0),
 
-            }
+//                            Nombre = reader.GetString(1),
 
-        }
+//                            Apellido = reader.GetString(2),
 
-    }
+//                            NombreUsuario = reader.GetString(3),
 
-}
+//                            Contraseña = reader.GetString(4),
+
+//                            Mail = reader.GetString(5)
+
+//                        };
+
+//                    }
+
+//                    else
+
+//                    {
+
+//                        return null;
+
+//                    }
+
+//                }
+
+//            }
+
+//        }
+
+//    }
+//}
+

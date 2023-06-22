@@ -8,8 +8,17 @@ namespace ProyectoFinalMattolini.Modelos
 {
     public class Venta
     {
-        public int Id { get; set; }
+        //Modelo
+        public long Id { get; set; }
         public string Comentarios { get; set; }
-        public int IdUsuario { get; set; }
+
+
+
+        //Constructor
+        public Venta()
+        {
+            Id = 0;
+            Comentarios = string.Empty;
+        }
     }
 }
