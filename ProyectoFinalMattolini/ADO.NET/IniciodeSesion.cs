@@ -21,7 +21,7 @@ namespace ProyectoFinalMattolini.ADO.NET
             connection.Open();
 
             const string query = @"SELECT Id, Nombre, Apellido, NombreUsuario, Contraseña, Mail FROM Usuario WHERE NombreUsuario = @nombreUsuario AND Contraseña = @contrasena";
-
+            //escribimos la query que queremos ejecutar
             using (var command = new SqlCommand(query, connection))
 
             {
@@ -30,6 +30,9 @@ namespace ProyectoFinalMattolini.ADO.NET
 
                 command.Parameters.AddWithValue("@contrasena", contrasena);
 
+
+
+                //iteramos cada fila que nos devuelve el select
                 using (var reader = command.ExecuteReader())
 
                 {
